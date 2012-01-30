@@ -1,6 +1,6 @@
 /**
  * EasyBeans
- * Copyright (C) 2010 Bull S.A.S.
+ * Copyright (C) 2010-2012 Bull S.A.S.
  * Contact: easybeans@ow2.org
  *
  * This library is free software; you can redistribute it and/or
@@ -19,11 +19,11 @@
  * USA
  *
  * --------------------------------------------------------------------------
- * $Id: BundleArchive.java 5371 2010-02-24 15:02:00Z benoitf $
+ * $Id: BundleArchive.java 6005 2011-10-17 12:59:28Z benoitf $
  * --------------------------------------------------------------------------
  */
 
-package org.eclipse.persistence.internal.jpa.deployment;
+package org.ow2.easybeans.persistence.eclipselink.deployment;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,19 +33,12 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.persistence.internal.jpa.deployment.ArchiveBase;
+import org.eclipse.persistence.jpa.Archive;
 import org.osgi.framework.BundleContext;
 import org.ow2.easybeans.util.osgi.BCMapper;
 
-/**
- * Allows to get entries from a Bundle.
- * @author Florent Benoit
- */
-public class BundleArchive implements Archive {
-
-    /**
-     * The URL representation of this archive.
-     */
-    private final URL url;
+public class BundleArchive extends ArchiveBase implements Archive {
 
     /**
      * List of URLs of the bundle.
@@ -59,12 +52,12 @@ public class BundleArchive implements Archive {
     private List<String> entries = null;
 
 
-    public BundleArchive(URL url) {
-        this.url = url;
+    public BundleArchive(URL url, String descriptorLocation) {
+        super(url, descriptorLocation);
         this.entries = new ArrayList<String>();
 
         BCMapper mapper = BCMapper.getInstance();
-        BundleContext bc = mapper.get(url);
+        BundleContext bc = mapper.get(getRootURL());
 
         // Get all the URLs of this bundle
         this.urlEntries = bc.getBundle().findEntries("", "*", true);
@@ -72,7 +65,7 @@ public class BundleArchive implements Archive {
         // Adds only entries of the bundle
         while (urlEntries.hasMoreElements()) {
             URL urlEntry = urlEntries.nextElement();
-            String entryName = urlEntry.toString().substring(url.toString().length());
+            String entryName = urlEntry.toString().substring(getRootURL().toString().length());
             this.entries.add(entryName);
         }
 
@@ -95,7 +88,7 @@ public class BundleArchive implements Archive {
      * @return the InputStream for the given entry name or null if not found.
      */
     public InputStream getEntry(String entryPath) throws IOException {
-        URL subEntry = new URL(url, entryPath);
+        URL subEntry = new URL(getRootURL(), entryPath);
         InputStream is = null;
         try {
             is = subEntry.openStream();
@@ -113,7 +106,7 @@ public class BundleArchive implements Archive {
      * @return the URL for the given entry name or null if not found.
      */
     public URL getEntryAsURL(String entryPath) throws IOException {
-        URL subEntry = new URL(url, entryPath);
+        URL subEntry = new URL(getRootURL(), entryPath);
         try {
             InputStream is = subEntry.openStream();
             // on Knopflerfish, stream is null (no exception)
@@ -128,11 +121,8 @@ public class BundleArchive implements Archive {
         return subEntry;
     }
 
-    /**
-     * @return the URL that this archive represents.
-     */
-    public URL getRootURL() {
-        return url;
+    public void close() {
+
     }
 
 }

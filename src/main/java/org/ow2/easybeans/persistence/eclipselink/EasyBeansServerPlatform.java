@@ -1,6 +1,6 @@
 /**
  * EasyBeans
- * Copyright (C) 2008 Bull S.A.S.
+ * Copyright (C) 2008-2012 Bull S.A.S.
  * Contact: easybeans@ow2.org
  *
  * This library is free software; you can redistribute it and/or
