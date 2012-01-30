@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - EasyBeans
+  - Copyright (C) 2010-2012 Bull S.A.S.
+  - Contact: easybeans@ow2.org
+  -
+  - This library is free software; you can redistribute it and/or
+  - modify it under the terms of the GNU Lesser General Public
+  - License as published by the Free Software Foundation; either
+  - version 2.1 of the License, or (at your option) any later version.
+  -
+  - This library is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  - Lesser General Public License for more details.
+  -
+  - You should have received a copy of the GNU Lesser General Public
+  - License along with this library; if not, write to the Free Software
+  - Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+  -
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  - $Id: pom.xml 6095 2012-01-16 16:45:49Z benoitf $
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>org.ow2.easybeans</groupId>
+    <artifactId>parent</artifactId>
+    <version>2.0-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.ow2.easybeans.persistence</groupId>
+  <artifactId>easybeans-persistence-eclipselink-1.1.x</artifactId>
+  <packaging>bundle</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>EasyBeans/Persistence :: Eclipselink :: v1.1.x</name>
+  <description>Easybeans Eclipselink 1.1.x bundle</description>
+
+  <properties>
+    <eclipselink.version>1.1.4</eclipselink.version>
+    <ow2-spec.version>1.0.10</ow2-spec.version>
+    <easybeans-utils.version>0.0.1-SNAPSHOT</easybeans-utils.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>eclipse</id>
+      <name>EclipseLink repository</name>
+      <url><![CDATA[http://www.eclipse.org/downloads/download.php?r=1&nf=1&file=/rt/eclipselink/maven.repo]]></url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>org.ow2.easybeans.persistence.eclipselink.v${eclipselink.version}</Bundle-SymbolicName>
+            <Bundle-Activator>org.ow2.easybeans.persistence.eclipselink.EclipseLinkActivator</Bundle-Activator>
+            <Private-Package><![CDATA[
+              org.eclipse.persistence.internal.jpa.deployment;-split-package:=first,
+               org.eclipse.persistence.platform.database;-split-package:=first
+              ]]>
+            </Private-Package>
+            <Embed-StripGroup>true</Embed-StripGroup>
+            <Embed-Directory>dependencies</Embed-Directory>
+            <Embed-Dependency>*;scope=compile|runtime;inline=true;artifactId=!eclipselink</Embed-Dependency>
+            <Import-Package><![CDATA[commonj.sdo.*;resolution:=optional,
+                                     org.apache.tools.ant.*;resolution:=optional,
+                                     oracle.*;resolution:=optional,
+                                     javax.crypto.*;resolution:=optional,
+                                      *]]>
+            </Import-Package>
+            <DynamicImport-Package>*</DynamicImport-Package>
+            <Export-Package><![CDATA[
+                org.eclipse.persistence.*;-split-package:=merge-first;version=${eclipselink.version},
+                xsd.*;version=${eclipselink.version},
+                commonj.sdo.*;version=${eclipselink.version},
+                org.ow2.easybeans.persistence.eclipselink;version=${project.version},
+             ]]>
+            </Export-Package>
+            <!-- Add version used by some components to know the version -->
+            <Implementation-Version>${eclipselink.version}</Implementation-Version>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+    
+
+  <dependencies>
+
+    <!-- JPA spec -->
+    <dependency>
+      <groupId>org.ow2.spec.ee</groupId>
+      <artifactId>ow2-jpa-1.0-spec</artifactId>
+      <version>${ow2-spec.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- JTA spec -->
+    <dependency>
+      <groupId>org.ow2.spec.ee</groupId>
+      <artifactId>ow2-jta-1.1-spec</artifactId>
+      <version>${ow2-spec.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- OSGi -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+      <version>4.3.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ow2.easybeans.utils</groupId>
+      <artifactId>easybeans-utils</artifactId>
+      <version>${easybeans-utils.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!--  EclipeLink and dependencies -->
+    <!-- Eclipselink non OSGi -->
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>eclipselink</artifactId>
+      <version>${eclipselink.version}</version>
+    </dependency>
+
+  </dependencies>
+</project>
