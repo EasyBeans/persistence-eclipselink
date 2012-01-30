@@ -34,8 +34,8 @@
   <artifactId>easybeans-persistence-eclipselink-1.1.x</artifactId>
   <packaging>bundle</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>EasyBeans/Persistence :: Eclipselink :: v1.1.x</name>
-  <description>Easybeans Eclipselink 1.1.x bundle</description>
+  <name>EasyBeans/Persistence :: Eclipselink :: v${eclipselink.version}</name>
+  <description>Easybeans Eclipselink ${eclipselink.version} bundle</description>
 
   <properties>
     <eclipselink.version>1.1.4</eclipselink.version>
