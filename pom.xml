@@ -31,14 +31,14 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.ow2.easybeans.persistence</groupId>
-  <artifactId>easybeans-persistence-eclipselink-1.1.x</artifactId>
+  <artifactId>easybeans-persistence-eclipselink-2.2.x</artifactId>
   <packaging>bundle</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>EasyBeans/Persistence :: Eclipselink :: v${eclipselink.version}</name>
   <description>Easybeans Eclipselink ${eclipselink.version} bundle</description>
 
   <properties>
-    <eclipselink.version>1.1.4</eclipselink.version>
+    <eclipselink.version>2.2.1</eclipselink.version>
     <ow2-spec.version>1.0.10</ow2-spec.version>
     <easybeans-utils.version>0.0.1-SNAPSHOT</easybeans-utils.version>
   </properties>
@@ -68,17 +68,25 @@
             <Bundle-SymbolicName>org.ow2.easybeans.persistence.eclipselink.v${eclipselink.version}</Bundle-SymbolicName>
             <Bundle-Activator>org.ow2.easybeans.persistence.eclipselink.EclipseLinkActivator</Bundle-Activator>
             <Private-Package><![CDATA[
-              org.eclipse.persistence.internal.jpa.deployment;-split-package:=first,
-               org.eclipse.persistence.platform.database;-split-package:=first
+              org.eclipse.persistence.internal.jpa.deployment;-split-package:=first
               ]]>
             </Private-Package>
             <Embed-StripGroup>true</Embed-StripGroup>
             <Embed-Directory>dependencies</Embed-Directory>
             <Embed-Dependency>*;scope=compile|runtime;inline=true;artifactId=!eclipselink</Embed-Dependency>
-            <Import-Package><![CDATA[commonj.sdo.*;resolution:=optional,
+            <Import-Package><![CDATA[javax.persistence.*;version=2.0.0,
+                                     commonj.sdo.*;resolution:=optional,
+                                     javax.annotation.processing;resolution:=optional,
+                                     javax.tools;resolution:=optional,
+                                     javax.lang.model.*;resolution:=optional,
+                                     com.sun.codemodel.*;resolution:=optional,
+                                     com.sun.tools.xjc.*;resolution:=optional,
                                      org.apache.tools.ant.*;resolution:=optional,
                                      oracle.*;resolution:=optional,
                                      javax.crypto.*;resolution:=optional,
+                                     javax.validation.*;resolution:=optional,
+                                     org.antlr.stringtemplate;resolution:=optional,
+                                     org.osgi.service.jpa;resolution:=optional,
                                       *]]>
             </Import-Package>
             <DynamicImport-Package>*</DynamicImport-Package>
@@ -103,7 +111,7 @@
     <!-- JPA spec -->
     <dependency>
       <groupId>org.ow2.spec.ee</groupId>
-      <artifactId>ow2-jpa-1.0-spec</artifactId>
+      <artifactId>ow2-jpa-2.0-spec</artifactId>
       <version>${ow2-spec.version}</version>
       <scope>provided</scope>
     </dependency>
