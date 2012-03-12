@@ -95,6 +95,7 @@
                 xsd.*;version=${eclipselink.version},
                 commonj.sdo.*;version=${eclipselink.version},
                 org.ow2.easybeans.persistence.eclipselink;version=${project.version},
+                org.ow2.easybeans.persistence.eclipselink.deployment;version=${project.version}
              ]]>
             </Export-Package>
             <!-- Add version used by some components to know the version -->

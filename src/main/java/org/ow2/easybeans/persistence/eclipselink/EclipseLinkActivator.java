@@ -28,9 +28,11 @@ package org.ow2.easybeans.persistence.eclipselink;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
+import org.eclipse.persistence.config.SystemProperties;
 import org.eclipse.persistence.jpa.PersistenceProvider;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.ow2.easybeans.persistence.eclipselink.deployment.EasyBeansArchiveFactoryImpl;
 
 /**
  * Activator that is registering the EclipseLink JPA Persistence provider.
@@ -62,6 +64,9 @@ public class EclipseLinkActivator implements BundleActivator {
         Dictionary<String, String> props = new Hashtable<String, String>();
         props.put("javax.persistence.provider", PersistenceProvider.class.getName());
         context.registerService(javax.persistence.spi.PersistenceProvider.class.getName(), PersistenceProvider.class.newInstance(), props);
+        
+        // Defines our own ArchiveFactory implementation
+        System.setProperty(SystemProperties.ARCHIVE_FACTORY, EasyBeansArchiveFactoryImpl.class.getName());
 
     }
 
