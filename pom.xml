@@ -39,9 +39,15 @@
 
   <properties>
     <eclipselink.version>2.3.2</eclipselink.version>
-    <ow2-spec.version>1.0.10</ow2-spec.version>
-    <easybeans-utils.version>0.0.1-SNAPSHOT</easybeans-utils.version>
+    <ow2-spec.version>1.0.11</ow2-spec.version>
+    <easybeans-utils.version>1.0.0</easybeans-utils.version>
   </properties>
+
+  <scm>
+    <connection>scm:git:git://gitorious.ow2.org/ow2-easybeans/persistence-eclipselink.git</connection>
+    <url>http://gitorious.ow2.org/ow2-easybeans/persistence-eclipselink</url>
+    <developerConnection>scm:git:git@gitorious.ow2.org:ow2-easybeans/persistence-eclipselink.git</developerConnection>
+  </scm>
 
   <repositories>
     <repository>
@@ -62,6 +68,7 @@
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
+        <version>2.3.6</version>
         <extensions>true</extensions>
         <configuration>
           <instructions>
@@ -93,7 +100,6 @@
             <DynamicImport-Package>*</DynamicImport-Package>
             <Export-Package><![CDATA[
                 org.eclipse.persistence.*;-split-package:=merge-first;version=${eclipselink.version},
-                xsd.*;version=${eclipselink.version},
                 commonj.sdo.*;version=${eclipselink.version},
                 org.ow2.easybeans.persistence.eclipselink;version=${project.version},
                 org.ow2.easybeans.persistence.eclipselink.deployment;version=${project.version}
