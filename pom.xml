@@ -38,7 +38,7 @@
   <description>Easybeans Eclipselink ${eclipselink.version} bundle</description>
 
   <properties>
-    <eclipselink.version>2.3.2</eclipselink.version>
+    <eclipselink.version>2.3.3</eclipselink.version>
     <ow2-spec.version>1.0.11</ow2-spec.version>
     <easybeans-utils.version>1.0.0</easybeans-utils.version>
   </properties>
