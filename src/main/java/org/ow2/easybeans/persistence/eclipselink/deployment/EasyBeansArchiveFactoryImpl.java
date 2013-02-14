@@ -82,7 +82,7 @@ public class EasyBeansArchiveFactoryImpl extends ArchiveFactoryImpl {
             if (f.isDirectory()) {
                 return  new EasyBeansDirectoryArchive(f, descriptorLocation);
             } else {
-                return new EasyBeansJarFileArchive(new JarFile(f), descriptorLocation);
+                return new EasyBeansJarFileArchive(rootUrl, new JarFile(f), descriptorLocation);
             }
         }
         return super.createArchive(rootUrl, descriptorLocation, properties);

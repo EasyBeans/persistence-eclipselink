@@ -31,14 +31,14 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.ow2.easybeans.persistence</groupId>
-  <artifactId>easybeans-persistence-eclipselink-2.3.x</artifactId>
+  <artifactId>easybeans-persistence-eclipselink-2.4.x</artifactId>
   <packaging>bundle</packaging>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <name>EasyBeans/Persistence :: Eclipselink :: v${eclipselink.version}</name>
   <description>Easybeans Eclipselink ${eclipselink.version} bundle</description>
 
   <properties>
-    <eclipselink.version>2.3.3</eclipselink.version>
+    <eclipselink.version>2.4.2-RC1</eclipselink.version>
     <ow2-spec.version>1.0.13-SNAPSHOT</ow2-spec.version>
     <easybeans-utils.version>1.0.0</easybeans-utils.version>
   </properties>
@@ -58,7 +58,7 @@
         <enabled>true</enabled>
       </releases>
       <snapshots>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
       </snapshots>
     </repository>
   </repositories>
@@ -92,6 +92,7 @@
                                      oracle.*;resolution:=optional,
                                      javax.crypto.*;resolution:=optional,
                                      javax.validation.*;resolution:=optional,
+                                     javax.ws.rs;javax.ws.rs.*;resolution:=optional,
                                      javax.xml.transform.stax.*;resolution:=optional,
                                      org.antlr.stringtemplate;resolution:=optional,
                                      org.osgi.service.jpa;resolution:=optional,
@@ -100,7 +101,7 @@
             <DynamicImport-Package>*</DynamicImport-Package>
             <Export-Package><![CDATA[
                 org.eclipse.persistence.*;-split-package:=merge-first;version=${eclipselink.version},
-                commonj.sdo.*;version=${eclipselink.version},
+                commonj.sdo.*;-split-package:=merge-first;version=${eclipselink.version},
                 org.ow2.easybeans.persistence.eclipselink;version=${project.version},
                 org.ow2.easybeans.persistence.eclipselink.deployment;version=${project.version}
              ]]>

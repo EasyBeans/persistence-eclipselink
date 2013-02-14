@@ -26,6 +26,7 @@
 package org.ow2.easybeans.persistence.eclipselink.deployment;
 
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -49,13 +50,13 @@ public class EasyBeansJarFileArchive extends JarFileArchive {
     private JarFile jarFile = null;
 
 
-    public EasyBeansJarFileArchive(JarFile jarFile, String descriptorLocation) throws MalformedURLException {
-        this(jarFile, descriptorLocation, Logger.global);
+    public EasyBeansJarFileArchive(URL rootUrl, JarFile jarFile, String descriptorLocation) throws MalformedURLException {
+        this(rootUrl, jarFile, descriptorLocation, Logger.global);
     }
 
-    public EasyBeansJarFileArchive(JarFile jarFile, String descriptorLocation, Logger logger)
+    public EasyBeansJarFileArchive(URL rootUrl, JarFile jarFile, String descriptorLocation, Logger logger)
             throws MalformedURLException {
-        super(jarFile, descriptorLocation, logger);
+        super(rootUrl, jarFile, descriptorLocation, logger);
         this.jarFile = jarFile;
     }
 
