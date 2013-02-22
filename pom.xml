@@ -39,7 +39,7 @@
 
   <properties>
     <eclipselink.version>2.3.3</eclipselink.version>
-    <ow2-spec.version>1.0.11</ow2-spec.version>
+    <ow2-spec.version>1.0.13-SNAPSHOT</ow2-spec.version>
     <easybeans-utils.version>1.0.0</easybeans-utils.version>
   </properties>
 
@@ -81,7 +81,7 @@
             <Embed-StripGroup>true</Embed-StripGroup>
             <Embed-Directory>dependencies</Embed-Directory>
             <Embed-Dependency>*;scope=compile|runtime;inline=true;artifactId=!eclipselink</Embed-Dependency>
-            <Import-Package><![CDATA[javax.persistence.*;version=2.0.0,
+            <Import-Package><![CDATA[javax.persistence.*;version=1.1;jpa="2.0",
                                      commonj.sdo.*;resolution:=optional,
                                      javax.annotation.processing;resolution:=optional,
                                      javax.tools;resolution:=optional,
