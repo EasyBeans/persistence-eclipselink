@@ -39,7 +39,7 @@
 
   <properties>
     <eclipselink.version>2.4.2-RC1</eclipselink.version>
-    <ow2-spec.version>1.0.13-SNAPSHOT</ow2-spec.version>
+    <ow2-spec.version>1.0.13</ow2-spec.version>
     <easybeans-utils.version>1.0.0</easybeans-utils.version>
   </properties>
 
