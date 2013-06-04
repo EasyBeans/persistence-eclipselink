@@ -86,6 +86,8 @@
                                      javax.annotation.processing;resolution:=optional,
                                      javax.tools;resolution:=optional,
                                      javax.lang.model.*;resolution:=optional,
+                                     javax.jms.*;resolution:=optional,
+                                     javax.mail.*;resolution:=optional,
                                      com.sun.codemodel.*;resolution:=optional,
                                      com.sun.tools.xjc.*;resolution:=optional,
                                      org.apache.tools.ant.*;resolution:=optional,
@@ -103,7 +105,8 @@
                 org.eclipse.persistence.*;-split-package:=merge-first;version=${eclipselink.version},
                 commonj.sdo.*;-split-package:=merge-first;version=${eclipselink.version},
                 org.ow2.easybeans.persistence.eclipselink;version=${project.version},
-                org.ow2.easybeans.persistence.eclipselink.deployment;version=${project.version}
+                org.ow2.easybeans.persistence.eclipselink.deployment;version=${project.version},
+                org.ow2.easybeans.util.osgi;version=1.0.0
              ]]>
             </Export-Package>
             <!-- Add version used by some components to know the version -->
