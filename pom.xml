@@ -33,7 +33,7 @@
   <groupId>org.ow2.easybeans.persistence</groupId>
   <artifactId>easybeans-persistence-eclipselink-2.4.x</artifactId>
   <packaging>bundle</packaging>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <name>EasyBeans/Persistence :: Eclipselink :: v${eclipselink.version}</name>
   <description>Easybeans Eclipselink ${eclipselink.version} bundle</description>
 
